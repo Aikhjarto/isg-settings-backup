@@ -1,0 +1,772 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de">
+<head>
+	<title>STIEBEL ELTRON Reglersteuerung</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="imagetoolbar" content="no" />
+	<meta name="content-language" content="de" />
+	<meta name="robots" content="noindex,nofollow" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+  
+  <link rel="shortcut icon" href="./pics/brlogo.ico">
+  <!-- does not exist link rel="stylesheet" href="./css/netzwerk.css" type="text/css" media="all" /-->
+  <link rel="stylesheet" type="text/css" href="./css/slider/ste_slider.css" />	
+	<!-- Blueprint CSS framework -->
+	<link rel="stylesheet" href="./css/blueprint/screen.css" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="./css/blueprint/print.css" type="text/css" media="print" />	
+	<!--[if lt IE 8]><link rel="stylesheet" href="./css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
+	
+	<link rel="stylesheet" href="./css/layout.css" type="text/css" media="all" />
+  	
+	<link rel="stylesheet" href="./css/sifr.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="./css/thickbox.css" type="text/css" media="all" />
+	
+	<link rel="stylesheet" type="text/css" href="./css/jquery.jqplot.min.css" />
+	
+	  
+  	
+	<script type="text/javascript" src="./js/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/thickbox.js"></script>
+	<script type="text/javascript" src="./js/sifr.js"></script>
+	<script type="text/javascript" src="./js/sifr_sw.js"></script>
+	<script type="text/javascript" src="./js/scripts.js"></script>
+  <script type="text/javascript" src="./js/json2.js"></script>
+  <script type="text/javascript" src="./js/plugins/jquery-ui-1.8.6.custom.min.js"></script>
+    <script type="text/javascript" src="./js/setDNS1.js"></script>
+
+	<!-- [if IE] -->
+	<script language="javascript" type="text/javascript" src="./js/excanvas.min.js"></script>
+	<!-- [endif] -->
+
+	<!-- for dateAxisRenderer.js -->
+	<script language="javascript" type="text/javascript" src="./js/plugins/Date.min.js"></script>
+	<!-- BEGIN: load jqplot -->
+	<script language="javascript" type="text/javascript" src="./js/jquery.jqplot.min.js"></script>
+	<script language="javascript" type="text/javascript" src="./js/plugins/jqplot.dateAxisRenderer.js"></script>
+	<script language="javascript" type="text/javascript" src="./js/plugins/jqplot.barRenderer.js"></script>
+	<script language="javascript" type="text/javascript" src="./js/plugins/jqplot.categoryAxisRenderer.js"></script>
+	<!-- END: load jqplot -->
+
+
+<style>
+.spinner {
+   width: 56px;
+   height: 56px;
+   border-radius: 50%;
+   border: 9px solid;
+   border-color: #D0D0D0;
+   border-right-color: #000000;
+   animation: spinner-d3wgkg 1s infinite linear;
+  
+}
+
+@keyframes spinner-d3wgkg {
+   to {
+      transform: rotate(1turn);
+   }
+}
+</style>
+  
+  <!-- BEGIN: load slider -->
+	<script language="javascript" type="text/javascript" src="./js/plugins/slider/jquery.ui.core.js"></script>
+	<script language="javascript" type="text/javascript" src="./js/plugins/slider/jquery.ui.widget.js"></script>
+	<script language="javascript" type="text/javascript" src="./js/plugins/slider/jquery.ui.mouse.js"></script>
+	<script language="javascript" type="text/javascript" src="./js/plugins/slider/jquery.ui.slider.js"></script>
+	<!-- END: load slider -->
+  
+    
+  <!-- BEGIN: Uhrzeit -->
+  <script language="javascript" type="text/javascript">
+var timestampunterschied = 1793779205 * 1000 - new Date().getTime();
+</script>
+<script src="./js/uhrzeit.js" type="text/javascript" language="javascript"></script>
+  <!-- END:  Uhrzeit -->
+  
+</head>
+<body>
+<div class="sessionToken" id="sessionToken" style="display:none">REDACTED</div><div id="header">
+	<div class="head curdef">
+		<div id="meta">
+			<div id="login">
+      			</div>
+		</div>
+    <div class="eingestelle_sprache"><strong><a href="?s=5,4" style="color:white">ENGLISH</a></strong></div>
+    <div id="Uhrzeit"></div>
+		<div class="title">
+      <a href="." onclick="return checkChanges(this);" title="zur Startseite">
+        <img src="./pics/title.png" alt="Servicewelt" />
+		
+      </a>
+          </div>
+		<div class="logo"><a href="." onclick="return checkChanges(this);" title="zur Startseite" class="home_link">&nbsp;</a></div>
+	</div>
+</div>
+
+
+<div class="container" id="page">
+  <div id="main" >
+  <div id="SpacerFirefox"></div>
+    <div id="nav">
+      <div class="clear"></div>
+            <div class="nav left defaultfirst">
+        <div class="l left">&nbsp;</div>
+        <div class="c left link1">
+          <a onclick="return checkChanges(this);" href="?s=0">START</a>
+        </div>
+        <div class="r left">&nbsp;</div>
+        <div class="clear"></div>
+              </div>
+            <div class="nav left default parent">
+        <div class="l left">&nbsp;</div>
+        <div class="c left link2">
+          <a >INFO</a>
+        </div>
+        <div class="r left">&nbsp;</div>
+        <div class="clear"></div>
+                <div class="second">
+          <ul class="second ">
+                        <li>
+			  <a onclick="return checkChanges(this);" href="?s=1,0">SYSTEM</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=1,1">HEAT PUMP</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=1,8">ENERGY FOOTPRINT</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=1,9">licence terms</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=1,10">USAGE AND DATA PROTECTION POLICY</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=1,11">MANUAL</a>
+    			    
+            </li>
+                    </ul>
+        </div>
+              </div>
+            <div class="nav left default parent">
+        <div class="l left">&nbsp;</div>
+        <div class="c left link3">
+          <a >DIAGNOSIS</a>
+        </div>
+        <div class="r left">&nbsp;</div>
+        <div class="clear"></div>
+                <div class="second">
+          <ul class="second ">
+                        <li>
+			  <a onclick="return checkChanges(this);" href="?s=2,1">SYSTEM STATUS</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=2,2">HEAT PUMP STATUS</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=2,4">HEAT PUMP ANALYSIS</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=2,6">INTERNAL CALCULATION</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=2,7">SYSTEM</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=2,9">NOTIFICATIONLIST</a>
+    			    
+            </li>
+                    </ul>
+        </div>
+              </div>
+            <div class="nav left default parent">
+        <div class="l left">&nbsp;</div>
+        <div class="c left link4">
+          <a >PROGRAMS</a>
+        </div>
+        <div class="r left">&nbsp;</div>
+        <div class="clear"></div>
+                <div class="second">
+          <ul class="second ">
+                        <li>
+			  <a onclick="return checkChanges(this);" href="?s=3,0">HEATING PROGRAM</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=3,1">COOLING PROGRAM</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=3,2">DHW PROGRAM</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=3,4">DHW CIRCULATION PROGRAM</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=3,5">SWIMMING POOL PROGRAM</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=3,6">SILENT PROGRAM 1</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=3,7">SILENT PROGRAM 2</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=3,12">PARTY PROGRAM</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=3,13">HOLIDAY PROGRAM</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=3,14">PASTEURISATION PROGRAM</a>
+    			    
+            </li>
+                    </ul>
+        </div>
+              </div>
+            <div class="nav left default parent">
+        <div class="l left">&nbsp;</div>
+        <div class="c left link5">
+          <a >SETTINGS</a>
+        </div>
+        <div class="r left">&nbsp;</div>
+        <div class="clear"></div>
+                <div class="second">
+          <ul class="second ">
+                        <li>
+			  <a onclick="return checkChanges(this);" href="?s=4,0">TIME / DATE</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=4,1">SET SUMMER TIME</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=4,2">HEATING</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=4,3">DHW</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=4,8">COOLING</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=4,9">SWIMMING POOL</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=4,15">ISG</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=4,26">POWER CONSUMPTION CONTROL</a>
+    			    
+            </li>
+                    </ul>
+        </div>
+              </div>
+            <div class="nav left defaultlast parent">
+        <div class="l left">&nbsp;</div>
+        <div class="c left link6">
+          <a >Profile</a>
+        </div>
+        <div class="r left">&nbsp;</div>
+        <div class="clear"></div>
+                <div class="second">
+          <ul class="second last">
+                        <li>
+			  <a onclick="return checkChanges(this);" href="?s=5,0">Network</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=5,1">Security</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=5,2">UPDATE</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=5,3">System diagram</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=5,4">LANGUAGE</a>
+    			    
+            </li>
+                    </ul>
+        </div>
+              </div>
+            <div class="clear"></div>
+    </div>
+        <div id="sub_nav" class="span-24"><div class="left main sifr span-9" style="width: 45%">HEATING PROGRAM</div>
+<div class="span-15 last">
+  <div class="nav default right" style="text-align:center;padding:0;" id="subsubnavicon">
+    <a style="background-image:none;"><img src="pics/sub_nav_default_bg_bot_2.gif"></a>
+    <div id="subsubnav" class="right" style="position:absolute; left:0px; background: url('pics/sub_sub_nav_bg_left.gif') repeat-y scroll 0pt 0pt white; z-index:99; display:none;margin-left:-5px;margin-top;2px">
+          <div class="nav default right" style="padding-right:25px;padding-bottom:5px;width:100%;float:left">
+        <div style="margin:auto;width:80%;background-color:#bbbdbe;height:1px;line-height:1px">
+          <img src="pics/sub_sub_nav_underline_r.gif" class="right">
+          <img src="pics/sub_sub_nav_underline_l.gif" class="left">
+        </div>
+        <a class="left" style="white-space:nowrap" href="?s=3,0,1" onclick="return checkChanges(this);">HEATING CIRCUIT 2</a>
+      </div>
+          <div class="nav default right" style="padding-right:25px;padding-bottom:5px;width:100%;float:left">
+        <div style="margin:auto;width:80%;background-color:#bbbdbe;height:1px;line-height:1px">
+          <img src="pics/sub_sub_nav_underline_r.gif" class="right">
+          <img src="pics/sub_sub_nav_underline_l.gif" class="left">
+        </div>
+        <a class="left" style="white-space:nowrap" href="?s=3,0,2" onclick="return checkChanges(this);">HEATING CIRCUIT 3</a>
+      </div>
+          <div class="nav default right" style="padding-right:25px;padding-bottom:5px;width:100%;float:left">
+        <div style="margin:auto;width:80%;background-color:#bbbdbe;height:1px;line-height:1px">
+          <img src="pics/sub_sub_nav_underline_r.gif" class="right">
+          <img src="pics/sub_sub_nav_underline_l.gif" class="left">
+        </div>
+        <a class="left" style="white-space:nowrap" href="?s=3,0,3" onclick="return checkChanges(this);">HEATING CIRCUIT 4</a>
+      </div>
+          <div class="nav default right" style="padding-right:25px;padding-bottom:5px;width:100%;float:left">
+        <div style="margin:auto;width:80%;background-color:#bbbdbe;height:1px;line-height:1px">
+          <img src="pics/sub_sub_nav_underline_r.gif" class="right">
+          <img src="pics/sub_sub_nav_underline_l.gif" class="left">
+        </div>
+        <a class="left" style="white-space:nowrap" href="?s=3,0,4" onclick="return checkChanges(this);">HEATING CIRCUIT 5</a>
+      </div>
+          <div class="right" style="height: 7px; width: 100%; background-image: url('pics/sub_sub_nav_bg_bot.gif');">
+        <img src="pics/sub_sub_nav_bg_round_top_right.gif" class="left">
+      </div>
+    </div>
+  </div>
+  <div class="nav active right">
+    <div class="l"></div>
+    <div class="c">
+      <a id="subnavactivename"></a>
+    </div>
+    <div class="r"></div>
+    <div class="clear"></div>
+  </div>
+  <script type="text/javascript">
+    $("#subnavactivename").html('HEATING CIRCUIT 1');
+    $("#subsubnavicon").css( 'width', function(){ 
+      return parseInt( $("#subsubnav").css('width')); 
+    }).click(function(e){
+      $("#subsubnav").slideToggle('fast');
+      e.stopPropagation();
+    });
+    $("#subsubnav").click(function(e){
+      e.stopPropagation();
+    });
+    $('body').bind('click', function(e) {
+      $("#subsubnav").slideUp('fast');
+    });
+  </script>
+</div>
+<div class="clear"></div></div>
+        <form id="werte" action="#" onsubmit="saveValues(this);return false;"><div id="content">
+    <div id="SliderBilderHilfe" class="span-24 curpoi round slider">
+  <div class="SliderBoxHeadline round-top">
+    <h2>Help</h2>
+  </div>
+  <div class="SliderBoxBilder">
+    <img src="./pics/slider/hilfe/move_slider_pointer.gif" />
+    <img src="./pics/slider/hilfe/move_group_pointer.gif" />
+    <img src="./pics/slider/hilfe/delete_group_pointer.gif" />
+  </div>
+</div>
+
+<div class="span-24 slider round">
+  <div id="132" class="SliderBoxHeadline round-top">
+    <h2 class="curdef" style="text-align:center;padding:5px; color:white;">Monday</h2>
+  </div>
+  <div>
+    <div id="slider132" style="margin:15px 25px 0;"></div>
+    <img src="./pics/slider/zeitleiste.gif" width="901" style="margin:-6px 0 3px 23px" />
+  </div>
+    <input id="val130" type="hidden" value="0;0" name="val130">
+    <input id="val131" type="hidden" value="0;0" name="val131">
+    <input id="val132" type="hidden" value="0;0" name="val132">
+  </div>
+
+<script type="text/javascript">
+$(function(){
+  $( "#slider132" ).slider({
+    range: true,
+    min: 0,
+    max: 96,
+    values: [40,80],
+    
+    ranges: true,
+    pushSlider: true,
+    slideGroup: true,
+    dblchange: true,
+    ids: ["val130","val131","val132"],
+    puffer: [40,80],
+    defaultValue: 128,
+    
+    isChange: function( values ){
+	valueChanged = true;
+      if( $("#"+this.id.replace("slider","")).hasClass("SliderBoxHeadline-active" ) ){
+        var self = this;
+        $("div.SliderBoxHeadline-active").each(function(){
+          if( self.id != "slider"+this.id ){
+            $( "#slider"+this.id ).slider( "resetSlider", $(self).slider("values") );
+          }
+        });
+      }
+    }
+    
+  });
+});
+</script>
+<div class="span-24 slider round">
+  <div id="135" class="SliderBoxHeadline round-top">
+    <h2 class="curdef" style="text-align:center;padding:5px; color:white;">Tuesday</h2>
+  </div>
+  <div>
+    <div id="slider135" style="margin:15px 25px 0;"></div>
+    <img src="./pics/slider/zeitleiste.gif" width="901" style="margin:-6px 0 3px 23px" />
+  </div>
+    <input id="val133" type="hidden" value="0;0" name="val133">
+    <input id="val134" type="hidden" value="0;0" name="val134">
+    <input id="val135" type="hidden" value="0;0" name="val135">
+  </div>
+
+<script type="text/javascript">
+$(function(){
+  $( "#slider135" ).slider({
+    range: true,
+    min: 0,
+    max: 96,
+    values: [40,80],
+    
+    ranges: true,
+    pushSlider: true,
+    slideGroup: true,
+    dblchange: true,
+    ids: ["val133","val134","val135"],
+    puffer: [40,80],
+    defaultValue: 128,
+    
+    isChange: function( values ){
+	valueChanged = true;
+      if( $("#"+this.id.replace("slider","")).hasClass("SliderBoxHeadline-active" ) ){
+        var self = this;
+        $("div.SliderBoxHeadline-active").each(function(){
+          if( self.id != "slider"+this.id ){
+            $( "#slider"+this.id ).slider( "resetSlider", $(self).slider("values") );
+          }
+        });
+      }
+    }
+    
+  });
+});
+</script>
+<div class="span-24 slider round">
+  <div id="138" class="SliderBoxHeadline round-top">
+    <h2 class="curdef" style="text-align:center;padding:5px; color:white;">Wednesday</h2>
+  </div>
+  <div>
+    <div id="slider138" style="margin:15px 25px 0;"></div>
+    <img src="./pics/slider/zeitleiste.gif" width="901" style="margin:-6px 0 3px 23px" />
+  </div>
+    <input id="val136" type="hidden" value="0;0" name="val136">
+    <input id="val137" type="hidden" value="0;0" name="val137">
+    <input id="val138" type="hidden" value="0;0" name="val138">
+  </div>
+
+<script type="text/javascript">
+$(function(){
+  $( "#slider138" ).slider({
+    range: true,
+    min: 0,
+    max: 96,
+    values: [40,80],
+    
+    ranges: true,
+    pushSlider: true,
+    slideGroup: true,
+    dblchange: true,
+    ids: ["val136","val137","val138"],
+    puffer: [40,80],
+    defaultValue: 128,
+    
+    isChange: function( values ){
+	valueChanged = true;
+      if( $("#"+this.id.replace("slider","")).hasClass("SliderBoxHeadline-active" ) ){
+        var self = this;
+        $("div.SliderBoxHeadline-active").each(function(){
+          if( self.id != "slider"+this.id ){
+            $( "#slider"+this.id ).slider( "resetSlider", $(self).slider("values") );
+          }
+        });
+      }
+    }
+    
+  });
+});
+</script>
+<div class="span-24 slider round">
+  <div id="141" class="SliderBoxHeadline round-top">
+    <h2 class="curdef" style="text-align:center;padding:5px; color:white;">Thursday</h2>
+  </div>
+  <div>
+    <div id="slider141" style="margin:15px 25px 0;"></div>
+    <img src="./pics/slider/zeitleiste.gif" width="901" style="margin:-6px 0 3px 23px" />
+  </div>
+    <input id="val139" type="hidden" value="0;0" name="val139">
+    <input id="val140" type="hidden" value="0;0" name="val140">
+    <input id="val141" type="hidden" value="0;0" name="val141">
+  </div>
+
+<script type="text/javascript">
+$(function(){
+  $( "#slider141" ).slider({
+    range: true,
+    min: 0,
+    max: 96,
+    values: [40,80],
+    
+    ranges: true,
+    pushSlider: true,
+    slideGroup: true,
+    dblchange: true,
+    ids: ["val139","val140","val141"],
+    puffer: [40,80],
+    defaultValue: 128,
+    
+    isChange: function( values ){
+	valueChanged = true;
+      if( $("#"+this.id.replace("slider","")).hasClass("SliderBoxHeadline-active" ) ){
+        var self = this;
+        $("div.SliderBoxHeadline-active").each(function(){
+          if( self.id != "slider"+this.id ){
+            $( "#slider"+this.id ).slider( "resetSlider", $(self).slider("values") );
+          }
+        });
+      }
+    }
+    
+  });
+});
+</script>
+<div class="span-24 slider round">
+  <div id="144" class="SliderBoxHeadline round-top">
+    <h2 class="curdef" style="text-align:center;padding:5px; color:white;">Friday</h2>
+  </div>
+  <div>
+    <div id="slider144" style="margin:15px 25px 0;"></div>
+    <img src="./pics/slider/zeitleiste.gif" width="901" style="margin:-6px 0 3px 23px" />
+  </div>
+    <input id="val142" type="hidden" value="0;0" name="val142">
+    <input id="val143" type="hidden" value="0;0" name="val143">
+    <input id="val144" type="hidden" value="0;0" name="val144">
+  </div>
+
+<script type="text/javascript">
+$(function(){
+  $( "#slider144" ).slider({
+    range: true,
+    min: 0,
+    max: 96,
+    values: [40,80],
+    
+    ranges: true,
+    pushSlider: true,
+    slideGroup: true,
+    dblchange: true,
+    ids: ["val142","val143","val144"],
+    puffer: [40,80],
+    defaultValue: 128,
+    
+    isChange: function( values ){
+	valueChanged = true;
+      if( $("#"+this.id.replace("slider","")).hasClass("SliderBoxHeadline-active" ) ){
+        var self = this;
+        $("div.SliderBoxHeadline-active").each(function(){
+          if( self.id != "slider"+this.id ){
+            $( "#slider"+this.id ).slider( "resetSlider", $(self).slider("values") );
+          }
+        });
+      }
+    }
+    
+  });
+});
+</script>
+<div class="span-24 slider round">
+  <div id="147" class="SliderBoxHeadline round-top">
+    <h2 class="curdef" style="text-align:center;padding:5px; color:white;">Saturday</h2>
+  </div>
+  <div>
+    <div id="slider147" style="margin:15px 25px 0;"></div>
+    <img src="./pics/slider/zeitleiste.gif" width="901" style="margin:-6px 0 3px 23px" />
+  </div>
+    <input id="val145" type="hidden" value="0;0" name="val145">
+    <input id="val146" type="hidden" value="0;0" name="val146">
+    <input id="val147" type="hidden" value="0;0" name="val147">
+  </div>
+
+<script type="text/javascript">
+$(function(){
+  $( "#slider147" ).slider({
+    range: true,
+    min: 0,
+    max: 96,
+    values: [40,80],
+    
+    ranges: true,
+    pushSlider: true,
+    slideGroup: true,
+    dblchange: true,
+    ids: ["val145","val146","val147"],
+    puffer: [40,80],
+    defaultValue: 128,
+    
+    isChange: function( values ){
+	valueChanged = true;
+      if( $("#"+this.id.replace("slider","")).hasClass("SliderBoxHeadline-active" ) ){
+        var self = this;
+        $("div.SliderBoxHeadline-active").each(function(){
+          if( self.id != "slider"+this.id ){
+            $( "#slider"+this.id ).slider( "resetSlider", $(self).slider("values") );
+          }
+        });
+      }
+    }
+    
+  });
+});
+</script>
+<div class="span-24 slider round">
+  <div id="150" class="SliderBoxHeadline round-top">
+    <h2 class="curdef" style="text-align:center;padding:5px; color:white;">Sunday</h2>
+  </div>
+  <div>
+    <div id="slider150" style="margin:15px 25px 0;"></div>
+    <img src="./pics/slider/zeitleiste.gif" width="901" style="margin:-6px 0 3px 23px" />
+  </div>
+    <input id="val148" type="hidden" value="0;0" name="val148">
+    <input id="val149" type="hidden" value="0;0" name="val149">
+    <input id="val150" type="hidden" value="0;0" name="val150">
+  </div>
+
+<script type="text/javascript">
+$(function(){
+  $( "#slider150" ).slider({
+    range: true,
+    min: 0,
+    max: 96,
+    values: [40,80],
+    
+    ranges: true,
+    pushSlider: true,
+    slideGroup: true,
+    dblchange: true,
+    ids: ["val148","val149","val150"],
+    puffer: [40,80],
+    defaultValue: 128,
+    
+    isChange: function( values ){
+	valueChanged = true;
+      if( $("#"+this.id.replace("slider","")).hasClass("SliderBoxHeadline-active" ) ){
+        var self = this;
+        $("div.SliderBoxHeadline-active").each(function(){
+          if( self.id != "slider"+this.id ){
+            $( "#slider"+this.id ).slider( "resetSlider", $(self).slider("values") );
+          }
+        });
+      }
+    }
+    
+  });
+});
+</script>
+
+<script type="text/javascript">
+  $("#SliderBilderHilfe").click(function(){
+    var i = $("#SliderBilderHilfe div.SliderBoxBilder");
+    if( i.css("display") == "none" )
+      i.css("display","block");
+    else
+      i.css("display","none");
+  });
+</script>
+
+<script type="text/javascript">
+  var ui_slider_actives = new Array;
+  $("div.SliderBoxHeadline").click(function(){
+    if( $(this).hasClass("SliderBoxHeadline-active") ){
+      $(this).removeClass("SliderBoxHeadline-active");
+    }else{
+      $(this).addClass("SliderBoxHeadline-active");
+    }
+  });
+</script>
+
+<div class="span-24 last">
+  <div class="span-4 right">
+    <div class="button left"  onclick="document.forms['werte'].onsubmit();"><div class="bg_r">&nbsp;</div><a>Save</a></div>  </div>
+</div>
+<div class="span-24 last"><p></p></div>    </div>  </form></div>
+</div>
+</div>
+</div>
+<div id="footer">
+	<!--[if IE]>
+	<style type="text/css">
+	#footer
+{
+		
+		height:260px;
+}
+	#versionsNummer
+	{
+		position:relative;
+		top:-33px;
+	}
+	</style>
+
+     	<![endif]-->
+	<div class="span-24 last footer_middle curdef">
+	
+		<div class="span-8 prepend-top" style="height:145px">
+					</div>
+	  
+    
+	</div>
+  <div class="links span-23 prepend-top append-1 last footer_middle">
+    <div class="span-17">
+        		<a class="intern" href="?forcepage=dsgvo" onclick="return checkChanges(this);">Data protection</a>
+				
+		<a href="http://www.stiebel-eltron.com/en/info/imprint.html">Impressum</a>
+      &nbsp;
+      <p style="margin-top:8px" class="right" id="versionsNummer">1.6.06.0000</p>
+    </div>
+  	<div class="copyright span-6 last curdef">
+  		&copy; STIEBEL ELTRON 2026  	</div>
+  </div>
+</div>
+</body>
+</html>

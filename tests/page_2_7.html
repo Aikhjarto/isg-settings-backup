@@ -1,0 +1,561 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de">
+<head>
+	<title>STIEBEL ELTRON Reglersteuerung</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="imagetoolbar" content="no" />
+	<meta name="content-language" content="de" />
+	<meta name="robots" content="noindex,nofollow" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+  
+  <link rel="shortcut icon" href="./pics/brlogo.ico">
+  <!-- does not exist link rel="stylesheet" href="./css/netzwerk.css" type="text/css" media="all" /-->
+  <link rel="stylesheet" type="text/css" href="./css/slider/ste_slider.css" />	
+	<!-- Blueprint CSS framework -->
+	<link rel="stylesheet" href="./css/blueprint/screen.css" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="./css/blueprint/print.css" type="text/css" media="print" />	
+	<!--[if lt IE 8]><link rel="stylesheet" href="./css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
+	
+	<link rel="stylesheet" href="./css/layout.css" type="text/css" media="all" />
+  	
+	<link rel="stylesheet" href="./css/sifr.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="./css/thickbox.css" type="text/css" media="all" />
+	
+	<link rel="stylesheet" type="text/css" href="./css/jquery.jqplot.min.css" />
+	
+	  
+  	
+	<script type="text/javascript" src="./js/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/thickbox.js"></script>
+	<script type="text/javascript" src="./js/sifr.js"></script>
+	<script type="text/javascript" src="./js/sifr_sw.js"></script>
+	<script type="text/javascript" src="./js/scripts.js"></script>
+  <script type="text/javascript" src="./js/json2.js"></script>
+  <script type="text/javascript" src="./js/plugins/jquery-ui-1.8.6.custom.min.js"></script>
+    <script type="text/javascript" src="./js/setDNS1.js"></script>
+
+	<!-- [if IE] -->
+	<script language="javascript" type="text/javascript" src="./js/excanvas.min.js"></script>
+	<!-- [endif] -->
+
+	<!-- for dateAxisRenderer.js -->
+	<script language="javascript" type="text/javascript" src="./js/plugins/Date.min.js"></script>
+	<!-- BEGIN: load jqplot -->
+	<script language="javascript" type="text/javascript" src="./js/jquery.jqplot.min.js"></script>
+	<script language="javascript" type="text/javascript" src="./js/plugins/jqplot.dateAxisRenderer.js"></script>
+	<script language="javascript" type="text/javascript" src="./js/plugins/jqplot.barRenderer.js"></script>
+	<script language="javascript" type="text/javascript" src="./js/plugins/jqplot.categoryAxisRenderer.js"></script>
+	<!-- END: load jqplot -->
+
+
+<style>
+.spinner {
+   width: 56px;
+   height: 56px;
+   border-radius: 50%;
+   border: 9px solid;
+   border-color: #D0D0D0;
+   border-right-color: #000000;
+   animation: spinner-d3wgkg 1s infinite linear;
+  
+}
+
+@keyframes spinner-d3wgkg {
+   to {
+      transform: rotate(1turn);
+   }
+}
+</style>
+  
+  <!-- BEGIN: load slider -->
+	<script language="javascript" type="text/javascript" src="./js/plugins/slider/jquery.ui.core.js"></script>
+	<script language="javascript" type="text/javascript" src="./js/plugins/slider/jquery.ui.widget.js"></script>
+	<script language="javascript" type="text/javascript" src="./js/plugins/slider/jquery.ui.mouse.js"></script>
+	<script language="javascript" type="text/javascript" src="./js/plugins/slider/jquery.ui.slider.js"></script>
+	<!-- END: load slider -->
+  
+    
+  <!-- BEGIN: Uhrzeit -->
+  <script language="javascript" type="text/javascript">
+var timestampunterschied = 1793779192 * 1000 - new Date().getTime();
+</script>
+<script src="./js/uhrzeit.js" type="text/javascript" language="javascript"></script>
+  <!-- END:  Uhrzeit -->
+  
+</head>
+<body>
+<div class="sessionToken" id="sessionToken" style="display:none">REDACTED</div><div id="header">
+	<div class="head curdef">
+		<div id="meta">
+			<div id="login">
+      			</div>
+		</div>
+    <div class="eingestelle_sprache"><strong><a href="?s=5,4" style="color:white">ENGLISH</a></strong></div>
+    <div id="Uhrzeit"></div>
+		<div class="title">
+      <a href="." onclick="return checkChanges(this);" title="zur Startseite">
+        <img src="./pics/title.png" alt="Servicewelt" />
+		
+      </a>
+          </div>
+		<div class="logo"><a href="." onclick="return checkChanges(this);" title="zur Startseite" class="home_link">&nbsp;</a></div>
+	</div>
+</div>
+
+
+<div class="container" id="page">
+  <div id="main" >
+  <div id="SpacerFirefox"></div>
+    <div id="nav">
+      <div class="clear"></div>
+            <div class="nav left defaultfirst">
+        <div class="l left">&nbsp;</div>
+        <div class="c left link1">
+          <a onclick="return checkChanges(this);" href="?s=0">START</a>
+        </div>
+        <div class="r left">&nbsp;</div>
+        <div class="clear"></div>
+              </div>
+            <div class="nav left default parent">
+        <div class="l left">&nbsp;</div>
+        <div class="c left link2">
+          <a >INFO</a>
+        </div>
+        <div class="r left">&nbsp;</div>
+        <div class="clear"></div>
+                <div class="second">
+          <ul class="second ">
+                        <li>
+			  <a onclick="return checkChanges(this);" href="?s=1,0">SYSTEM</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=1,1">HEAT PUMP</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=1,8">ENERGY FOOTPRINT</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=1,9">licence terms</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=1,10">USAGE AND DATA PROTECTION POLICY</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=1,11">MANUAL</a>
+    			    
+            </li>
+                    </ul>
+        </div>
+              </div>
+            <div class="nav left default parent">
+        <div class="l left">&nbsp;</div>
+        <div class="c left link3">
+          <a >DIAGNOSIS</a>
+        </div>
+        <div class="r left">&nbsp;</div>
+        <div class="clear"></div>
+                <div class="second">
+          <ul class="second ">
+                        <li>
+			  <a onclick="return checkChanges(this);" href="?s=2,1">SYSTEM STATUS</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=2,2">HEAT PUMP STATUS</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=2,4">HEAT PUMP ANALYSIS</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=2,6">INTERNAL CALCULATION</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=2,7">SYSTEM</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=2,9">NOTIFICATIONLIST</a>
+    			    
+            </li>
+                    </ul>
+        </div>
+              </div>
+            <div class="nav left default parent">
+        <div class="l left">&nbsp;</div>
+        <div class="c left link4">
+          <a >PROGRAMS</a>
+        </div>
+        <div class="r left">&nbsp;</div>
+        <div class="clear"></div>
+                <div class="second">
+          <ul class="second ">
+                        <li>
+			  <a onclick="return checkChanges(this);" href="?s=3,0">HEATING PROGRAM</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=3,1">COOLING PROGRAM</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=3,2">DHW PROGRAM</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=3,4">DHW CIRCULATION PROGRAM</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=3,5">SWIMMING POOL PROGRAM</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=3,6">SILENT PROGRAM 1</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=3,7">SILENT PROGRAM 2</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=3,12">PARTY PROGRAM</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=3,13">HOLIDAY PROGRAM</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=3,14">PASTEURISATION PROGRAM</a>
+    			    
+            </li>
+                    </ul>
+        </div>
+              </div>
+            <div class="nav left default parent">
+        <div class="l left">&nbsp;</div>
+        <div class="c left link5">
+          <a >SETTINGS</a>
+        </div>
+        <div class="r left">&nbsp;</div>
+        <div class="clear"></div>
+                <div class="second">
+          <ul class="second ">
+                        <li>
+			  <a onclick="return checkChanges(this);" href="?s=4,0">TIME / DATE</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=4,1">SET SUMMER TIME</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=4,2">HEATING</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=4,3">DHW</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=4,8">COOLING</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=4,9">SWIMMING POOL</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=4,15">ISG</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=4,26">POWER CONSUMPTION CONTROL</a>
+    			    
+            </li>
+                    </ul>
+        </div>
+              </div>
+            <div class="nav left defaultlast parent">
+        <div class="l left">&nbsp;</div>
+        <div class="c left link6">
+          <a >Profile</a>
+        </div>
+        <div class="r left">&nbsp;</div>
+        <div class="clear"></div>
+                <div class="second">
+          <ul class="second last">
+                        <li>
+			  <a onclick="return checkChanges(this);" href="?s=5,0">Network</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=5,1">Security</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=5,2">UPDATE</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=5,3">System diagram</a>
+    			    
+            </li>
+                      <li>
+			  <a onclick="return checkChanges(this);" href="?s=5,4">LANGUAGE</a>
+    			    
+            </li>
+                    </ul>
+        </div>
+              </div>
+            <div class="clear"></div>
+    </div>
+        <div id="sub_nav" class="span-24"><div class="left main sifr span-9" style="width: 45%">SYSTEM</div>
+<div class="span-15 last">
+</div>
+<div class="clear"></div></div>
+        <form id="werte" action="#" onsubmit="saveValues(this);return false;"><div id="content">
+    <div class="span-11 append-1" style="float:left"><table class="info"><tr><th colspan="2" class="round-top">CONTROLLER</th></tr>  <tr class="even">
+    <td class="key">SOFTWARE</td>
+    <td class="value">449</td>
+  </tr>
+  <tr class="odd">
+    <td class="key">Major version</td>
+    <td class="value">19</td>
+  </tr>
+  <tr class="even">
+    <td class="key">Minor version</td>
+    <td class="value">0</td>
+  </tr>
+  <tr class="odd">
+    <td class="key">Revision</td>
+    <td class="value">5</td>
+  </tr>
+  <tr class="even">
+    <td class="key round-leftbottom">SW MATERIAL NUMBER</td>
+    <td class="value round-rightbottom">354532</td>
+  </tr>
+</table></div><div class="span-11 prepend-1" style="float:right"><table class="info"><tr><th colspan="2" class="round-top">WPE</th></tr>  <tr class="even">
+    <td class="key">SOFTWARE</td>
+    <td class="value">503</td>
+  </tr>
+  <tr class="odd">
+    <td class="key">Major version</td>
+    <td class="value">5</td>
+  </tr>
+  <tr class="even">
+    <td class="key">Minor version</td>
+    <td class="value">0</td>
+  </tr>
+  <tr class="odd">
+    <td class="key">Revision</td>
+    <td class="value">0</td>
+  </tr>
+  <tr class="even">
+    <td class="key round-leftbottom">SW MATERIAL NUMBER</td>
+    <td class="value round-rightbottom">358441</td>
+  </tr>
+</table></div><div class="span-11 append-1" style="float:left"><table class="info"><tr><th colspan="2" class="round-top">HEAT PUMP</th></tr>  <tr class="even">
+    <td class="key">SOFTWARE</td>
+    <td class="value">450</td>
+  </tr>
+  <tr class="odd">
+    <td class="key">Major version</td>
+    <td class="value">4</td>
+  </tr>
+  <tr class="even">
+    <td class="key">Minor version</td>
+    <td class="value">0</td>
+  </tr>
+  <tr class="odd">
+    <td class="key">Revision</td>
+    <td class="value">4</td>
+  </tr>
+  <tr class="even">
+    <td class="key">SW MATERIAL NUMBER</td>
+    <td class="value">359771</td>
+  </tr>
+  <tr class="odd">
+    <td class="key">HP-TYPE</td>
+    <td class="value">1</td>
+  </tr>
+  <tr class="even">
+    <td class="key">PARAMETERSET</td>
+    <td class="value">0</td>
+  </tr>
+  <tr class="odd">
+    <td class="key round-leftbottom">HP-ID</td>
+    <td class="value round-rightbottom">271</td>
+  </tr>
+</table></div><div class="span-11 prepend-1" style="float:right"><table class="info"><tr><th colspan="2" class="round-top">FES</th></tr>  <tr class="even">
+    <td class="key">SOFTWARE</td>
+    <td class="value">502</td>
+  </tr>
+  <tr class="odd">
+    <td class="key">Major version</td>
+    <td class="value">9</td>
+  </tr>
+  <tr class="even">
+    <td class="key">Minor version</td>
+    <td class="value">0</td>
+  </tr>
+  <tr class="odd">
+    <td class="key">Revision</td>
+    <td class="value">3</td>
+  </tr>
+  <tr class="even">
+    <td class="key round-leftbottom">SW MATERIAL NUMBER</td>
+    <td class="value round-rightbottom">355905</td>
+  </tr>
+</table></div><div class="span-11 prepend-1" style="float:right"><table class="info"><tr><th colspan="2" class="round-top">FET 2</th></tr>  <tr class="even">
+    <td class="key">SOFTWARE</td>
+    <td class="value">501</td>
+  </tr>
+  <tr class="odd">
+    <td class="key">Major version</td>
+    <td class="value">4</td>
+  </tr>
+  <tr class="even">
+    <td class="key">Minor version</td>
+    <td class="value">0</td>
+  </tr>
+  <tr class="odd">
+    <td class="key">Revision</td>
+    <td class="value">5</td>
+  </tr>
+  <tr class="even">
+    <td class="key round-leftbottom">SW MATERIAL NUMBER</td>
+    <td class="value round-rightbottom">358183</td>
+  </tr>
+</table></div><div class="span-11 append-1" style="float:left"><table class="info"><tr><th colspan="2" class="round-top">FET 3</th></tr>  <tr class="even">
+    <td class="key">SOFTWARE</td>
+    <td class="value">501</td>
+  </tr>
+  <tr class="odd">
+    <td class="key">Major version</td>
+    <td class="value">4</td>
+  </tr>
+  <tr class="even">
+    <td class="key">Minor version</td>
+    <td class="value">0</td>
+  </tr>
+  <tr class="odd">
+    <td class="key">Revision</td>
+    <td class="value">5</td>
+  </tr>
+  <tr class="even">
+    <td class="key round-leftbottom">SW MATERIAL NUMBER</td>
+    <td class="value round-rightbottom">358183</td>
+  </tr>
+</table></div><div class="span-11 prepend-1" style="float:right"><table class="info"><tr><th colspan="2" class="round-top">FET 4</th></tr>  <tr class="even">
+    <td class="key">SOFTWARE</td>
+    <td class="value">501</td>
+  </tr>
+  <tr class="odd">
+    <td class="key">Major version</td>
+    <td class="value">4</td>
+  </tr>
+  <tr class="even">
+    <td class="key">Minor version</td>
+    <td class="value">0</td>
+  </tr>
+  <tr class="odd">
+    <td class="key">Revision</td>
+    <td class="value">5</td>
+  </tr>
+  <tr class="even">
+    <td class="key round-leftbottom">SW MATERIAL NUMBER</td>
+    <td class="value round-rightbottom">358183</td>
+  </tr>
+</table></div><div class="span-11 append-1" style="float:left"><table class="info"><tr><th colspan="2" class="round-top">FET 5</th></tr>  <tr class="even">
+    <td class="key">SOFTWARE</td>
+    <td class="value">501</td>
+  </tr>
+  <tr class="odd">
+    <td class="key">Major version</td>
+    <td class="value">4</td>
+  </tr>
+  <tr class="even">
+    <td class="key">Minor version</td>
+    <td class="value">0</td>
+  </tr>
+  <tr class="odd">
+    <td class="key">Revision</td>
+    <td class="value">5</td>
+  </tr>
+  <tr class="even">
+    <td class="key round-leftbottom">SW MATERIAL NUMBER</td>
+    <td class="value round-rightbottom">358183</td>
+  </tr>
+</table></div><div class="span-11 prepend-1" style="float:right"><table class="info"><tr><th colspan="2" class="round-top">ISG</th></tr>  <tr class="even">
+    <td class="key">Major version</td>
+    <td class="value">1</td>
+  </tr>
+  <tr class="odd">
+    <td class="key">Minor version</td>
+    <td class="value">6</td>
+  </tr>
+  <tr class="even">
+    <td class="key">Revision</td>
+    <td class="value">6</td>
+  </tr>
+  <tr class="odd">
+    <td class="key round-leftbottom">Build</td>
+    <td class="value round-rightbottom">0</td>
+  </tr>
+</table></div><div class="span-11 append-1" style="float:left"><table class="info"><tr><th colspan="2" class="round-top">CAN-Status</th></tr>  <tr class="even">
+    <td class="key">OK</td>
+    <td class="value"><img height="15" src="./pics/ste-symbol_an-97b765.png" /></td>
+  </tr>
+</table></div><div class="span-24">&nbsp;</div>
+    </div>  </form></div>
+</div>
+</div>
+</div>
+<div id="footer">
+	<!--[if IE]>
+	<style type="text/css">
+	#footer
+{
+		
+		height:260px;
+}
+	#versionsNummer
+	{
+		position:relative;
+		top:-33px;
+	}
+	</style>
+
+     	<![endif]-->
+	<div class="span-24 last footer_middle curdef">
+	
+		<div class="span-8 prepend-top" style="height:145px">
+					</div>
+	  
+    
+	</div>
+  <div class="links span-23 prepend-top append-1 last footer_middle">
+    <div class="span-17">
+        		<a class="intern" href="?forcepage=dsgvo" onclick="return checkChanges(this);">Data protection</a>
+				
+		<a href="http://www.stiebel-eltron.com/en/info/imprint.html">Impressum</a>
+      &nbsp;
+      <p style="margin-top:8px" class="right" id="versionsNummer">1.6.06.0000</p>
+    </div>
+  	<div class="copyright span-6 last curdef">
+  		&copy; STIEBEL ELTRON 2026  	</div>
+  </div>
+</div>
+</body>
+</html>
