@@ -32,6 +32,8 @@ DATA_DIR = Path(os.environ.get("ISG_BACKUP_DIR", Path.home() / "isg-backup"))
 BACKUP_FILE = DATA_DIR / "isg-settings.json"
 FORMAT = 2
 
+# Not backed up: the clock and date change all the time and would make every backup a new commit.
+NOT_BACKED_UP = {"?s=4,0", "?s=4,0,0", "?s=4,0,1"}
 # Never written back: clock, summer time switch dates, holiday dates.
 NEVER_RESTORE = {"?s=4,0", "?s=4,0,0", "?s=4,0,1", "?s=4,1", "?s=4,1,0", "?s=4,1,1", "?s=3,13", "?s=3,13,0", "?s=3,13,1"}
 TIME_PROGRAMS = ["?s=3,0,0", "?s=3,0,1", "?s=3,0,2", "?s=3,0,3", "?s=3,0,4", "?s=3,1,0", "?s=3,1,1", "?s=3,1,2",
@@ -49,6 +51,8 @@ def take() -> dict:
             "versions": isg_web.parse_versions(system_page), "parameter_set": isg_web.parse_parameter_set(system_page),
             "settings": {}, "time_programs": {}, "holding": {}}
     for page in isg_web.settings_pages():
+        if page in NOT_BACKED_UP:
+            continue
         fields = parse_settings(fetch(page)[0])
         data["settings"][page] = {vid: {k: f[k] for k in ("label", "value", "kind")} for vid, f in fields.items()}
     for page in TIME_PROGRAMS:

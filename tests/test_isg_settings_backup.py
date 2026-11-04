@@ -193,6 +193,22 @@ class BackupGuardTests(unittest.TestCase):
         file.write_text.assert_not_called()
 
 
+class TakeTests(unittest.TestCase):
+    def test_clock_is_not_backed_up(self):
+        fetched = []
+
+        def fake_fetch(page_id):
+            fetched.append(page_id)
+            return (page("page_2_7.html") if page_id == isg_web.VERSION_PAGE else "", None)
+
+        with mock.patch.object(backup, "fetch", side_effect=fake_fetch), \
+                mock.patch.object(backup, "modbus_read", side_effect=lambda f, r, n: [0] * n):
+            data = backup.take()
+        self.assertFalse(backup.NOT_BACKED_UP & set(fetched))
+        self.assertFalse(backup.NOT_BACKED_UP & set(data["settings"]))
+        self.assertIn("?s=4,2,1", data["settings"])
+
+
 class PagesFileTests(unittest.TestCase):
     def test_pages_list_has_the_heating_circuits(self):
         listed = isg_web.settings_pages()

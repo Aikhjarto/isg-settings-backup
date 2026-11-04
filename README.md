@@ -55,7 +55,7 @@ The ISG web interface is slow (about 10 s per page), so a full backup or diff ta
 
 - **Version check:** restore compares the stored versions of the ISG, WPM (449), WPE (503), heat pump (450, HP-TYPE, HP-ID), FES (502) and FET room units (501) with the device. If any of them differs, or a module appeared or disappeared, nothing is written. After a firmware update, field ids and meanings may have changed. Check the pages by hand first; then `--allow-version-change` overrides the check. A backup taken before the version check existed also needs this flag.
 - **No backup of a reset WPM:** `backup` refuses to store anything when the WPM is not in program mode (holding 1501 != 2). A WPM that lost its settings comes back in standby, so its defaults cannot overwrite the good copy.
-- **Never restored:** the clock, the summer time dates and the holiday program.
+- **Not backed up:** the clock and the date (they change constantly). **Never restored:** the summer time dates and the holiday program.
 - Restore writes only the fields that differ, the way the web form does (`POST save.php`, `data=[{"name": "valNNNN", "value": "x.y"}]`).
 
 ## After a power cut
